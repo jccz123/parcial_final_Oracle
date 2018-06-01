@@ -1,0 +1,21 @@
+
+plsql.execute <<-SQL
+select numero_cuota,cuota_mensual,abono_capital,abono_interes,saldo,
+sum(abono_interes) over (partition by numero_cuota)
+total_intereses
+from amortizacion
+SQL
+
+plsql.execute <<-SQL
+
+create OR REPLACE procedure par_O_impar( NUMERO IN NUMBER) AS -- cramos un procedimiento almacenado
+ BEGIN
+ 
+   IF MOD(NUMERO,2) = 1
+   THEN DBMS_OUTPUT.PUT_LINE('ES impar');
+    ELSE DBMS_OUTPUT.PUT_LINE('ES par');
+    END IF;
+  END;
+ 
+EXECUTE par_O_impar(2)
+
