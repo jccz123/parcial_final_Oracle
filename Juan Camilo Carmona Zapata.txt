@@ -8,6 +8,14 @@ SQL
 
 plsql.execute <<-SQL
 
+CREATE TYPE varray_type IS VARRAY(5)OF INTEGER;
+DECLARE
+  v2 varray_type;
+BEGIN
+   v2 := varray_type(1,2,3,4,5);
+   par_O_impar(v2);
+END;
+.....
 create OR REPLACE procedure par_O_impar( NUMERO IN NUMBER) AS -- cramos un procedimiento almacenado
  BEGIN
  
@@ -16,6 +24,6 @@ create OR REPLACE procedure par_O_impar( NUMERO IN NUMBER) AS -- cramos un proce
     ELSE DBMS_OUTPUT.PUT_LINE('ES par');
     END IF;
   END;
- 
 EXECUTE par_O_impar(2)
+SQL
 
